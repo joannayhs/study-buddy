@@ -4,9 +4,7 @@ class QuizAdapter {
     }
 
     getQuizzes() {
-        return fetch(baseUrl)
-        .then(res => res.json())
-        .then(json => console.log(json))
+        return fetch(this.baseUrl).then(res => res.json())
     }   
 
 }
