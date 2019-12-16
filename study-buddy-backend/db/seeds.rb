@@ -31,3 +31,15 @@ second_question.options.build(text: "2/4", correct: false)
 second_question.save
 second_question.options.build(text: "3/4", correct: false)
 second_question.save
+
+quiz_two = Quiz.create(title: "US Prsidents", subject: "Social Studies")
+question_one = quiz_two.questions.build(text: "Who was the 16th president of the United States?")
+quiz_two.save
+question_one.options.build(text: "George Washington", correct: false)
+question_one.save
+question_one.options.build(text: "John Adams", correct: false)
+question_one.save
+question_one.options.build(text: "Abraham Lincoln", correct: true)
+question_one.save
+question_one.options.build(text: "Thomas Jefferson", correct: false)
+question_one.save
