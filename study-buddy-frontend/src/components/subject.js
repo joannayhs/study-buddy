@@ -17,17 +17,15 @@ class Subject {
     }
 
    renderQuizSelection(subject) {
-    console.log(this)
-    this.quizzes.forEach(quiz => createQuizCard(quiz))
-    console.log(subject)
+    this.quizzes.forEach(quiz => this.createQuizCard(quiz))
    }
 
     createQuizCard(quiz) {
         const quizSelectContainer = document.getElementById('quiz-select-container')
 
-        quizCard = document.createElement('div')
+        let quizCard = document.createElement('div')
         quizCard.classList = "quiz-card"
-        let text = quizCard.createElement('p')
+        let text = document.createElement('p')
         text.innerText = quiz.title
         quizCard.appendChild(text)
         quizSelectContainer.appendChild(quizCard)

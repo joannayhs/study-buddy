@@ -12,7 +12,6 @@ class Quizzes {
         }).then(() => this.render())
     }
 
-
     render() {
         const quizContainer = document.getElementById('quiz-container')
         this.quizzes.forEach(quiz => new Subject(quiz.subject, quiz))
