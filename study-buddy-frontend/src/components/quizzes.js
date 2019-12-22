@@ -17,26 +17,4 @@ class Quizzes {
         this.quizzes.forEach(quiz => new Subject(quiz.subject, quiz))
         }
 
-    renderQuizSelection(subject) {
-        this.quizzes.forEach(quiz => this.createQuizCard(quiz))
-        hideQuizSelection()
-    }
-
-    hideQuizSelection() {
-
-    }
-
-
-    createQuizCard(quiz) {
-        const quizSelectContainer = document.getElementById('quiz-select-container')
-        quizSelectContainer.classList.remove('hide')
-
-        let quizCard = document.createElement('div')
-        quizCard.classList = "quiz-card"
-
-        let text = document.createElement('p')
-        text.innerText = quiz.title
-        quizCard.appendChild(text)
-        quizSelectContainer.appendChild(quizCard)
-    }
 }
