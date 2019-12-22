@@ -1,5 +1,6 @@
 class QuizManager {
-    constructor(title){
-        this.quiz = title
+    constructor(quiz){
+        this.quiz = quiz
+        this.renderQuiz()
     }
 }

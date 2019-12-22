@@ -1,3 +1,15 @@
 .hide {
     display: none;
 }
+
+#subject-container{
+    border: 2px black solid;
+    width: 15%;
+    float: left;
+}
+
+#main-container {
+    border: 2px black solid;
+    float: right;
+
+}
