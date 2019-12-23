@@ -14,6 +14,6 @@ class Quizzes {
 
     render() {
         this.quizzes.forEach(quiz => new Subject(quiz.subject, quiz))
-        }
+    }
 
 }

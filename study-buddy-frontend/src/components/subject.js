@@ -34,7 +34,10 @@ class Subject {
         text.innerText = quiz.title
         quizCard.appendChild(text)
         quizSelectContainer.appendChild(quizCard)
-        quizCard.addEventListener('click', (e) => new QuizManager(e.target.innerText))
+        quizCard.addEventListener('click', (e) => {
+            new QuizManager(quiz)
+            quizCard.parentElement.removeChild(quizCard)
+        })
     }
 
 }
