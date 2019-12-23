@@ -37,6 +37,8 @@ class Subject {
         quizCard.addEventListener('click', (e) => {
             new QuizManager(quiz)
             quizCard.parentElement.removeChild(quizCard)
+            const subjectContainer = document.getElementById('subject-container')
+            console.log(subjectContainer)
         })
     }
 

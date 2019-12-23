@@ -32,7 +32,7 @@ second_question.save
 second_question.options.build(text: "3/4", correct: false)
 second_question.save
 
-quiz_two = Quiz.create(title: "US Prsidents", subject: "Social Studies")
+quiz_two = Quiz.create(title: "US Presidents", subject: "Social Studies")
 question_one = quiz_two.questions.build(text: "Who was the 16th president of the United States?")
 quiz_two.save
 question_one.options.build(text: "George Washington", correct: false)
@@ -43,3 +43,26 @@ question_one.options.build(text: "Abraham Lincoln", correct: true)
 question_one.save
 question_one.options.build(text: "Thomas Jefferson", correct: false)
 question_one.save
+
+quiz_three = Quiz.create(title: "US Capitals", subject: "Social Studies")
+question_one = quiz_three.questions.build(text: "What is the capital of New Jersey?")
+quiz_three.save
+question_one.options.build(text: "Hamilton", correct: false)
+question_one.save
+question_one.options.build(text: "Jersey City", correct: false)
+question_one.save
+question_one.options.build(text: "Trenton", correct: true)
+question_one.save
+question_one.options.build(text: "Thomas Jefferson", correct: false)
+question_one.save
+
+question_two = quiz_three.questions.build(text: "What is the capital of New York?")
+quiz_three.save
+question_two.options.build(text: "New York City", correct: false)
+question_two.save
+question_two.options.build(text: "Albany", correct: true)
+question_two.save
+question_two.options.build(text: "Yonkers", correct: false)
+question_two.save
+question_two.options.build(text: "Rochester", correct: false)
+question_two.save

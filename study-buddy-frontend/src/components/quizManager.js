@@ -22,8 +22,14 @@ class QuizManager {
             let questionText = document.createElement('p')
             questionText.innerText = question.text
             questionCard.appendChild(questionText)
+            console.log(this)
+            this.loadOptions(question)
         })
         quizContainer.appendChild(questionCard)
+        
+    }
+
+    loadOptions(question){
         
     }
 }
