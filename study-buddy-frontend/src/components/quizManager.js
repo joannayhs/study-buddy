@@ -18,6 +18,11 @@ class QuizManager {
         const quizContainer = document.getElementById('quiz-container')
         let questionCard = document.createElement('div')
         questionCard.classList.add('question-card')
+        this.questions.forEach(question => {
+            let questionText = document.createElement('p')
+            questionText.innerText = question.text
+            questionCard.appendChild(questionText)
+        })
         quizContainer.appendChild(questionCard)
         
     }
