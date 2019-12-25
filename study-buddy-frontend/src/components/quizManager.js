@@ -1,7 +1,7 @@
 class QuizManager {
     constructor(quiz){
         this.quiz = quiz
-        this.questions = quiz.questions
+        this.adapter = new QuestionAdapter()
         this.renderQuiz()
     }
 
@@ -13,28 +13,20 @@ class QuizManager {
         let startButton =  document.createElement('button')
         startButton.id = "start-button"
         startButton.innerText = "start quiz"
-        startButton.addEventListener('click', (e) => this.loadQuestion())
+        startButton.addEventListener('click', (e) => this.fetchAndloadQuestion())
         quizContainer.appendChild(quizTitle)
-        quizContainer.appendChild(startButton)
-        
+        quizContainer.appendChild(startButton)  
 
     }
 
-    loadQuestion() {
-        const quizContainer = document.getElementById('quiz-container')
-        const startButton = document.getElementById('start-button')
-        startButton.classList.add('hide')
-        let questionCard = document.createElement('div')
-        questionCard.classList.add('question-card')
-        this.questions.forEach(question => {
-            let questionText = document.createElement('p')
-            questionText.innerText = question.text
-            questionCard.appendChild(questionText)
-            this.loadOptions(question)
-        })
-        quizContainer.appendChild(questionCard)
-        
-    }
+    fetchAndloadQuestion() {
+        return this.adapter.getQuestions()
+            .then(question => {
+                question.forEach(question => {
+                    new Question(question)
+                })
+            }).then(() => this.loadOptions())
+        }
 
     loadOptions(question){
         const questionCard = document.querySelector('.question-card')
