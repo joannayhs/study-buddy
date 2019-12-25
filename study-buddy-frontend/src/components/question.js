@@ -1,21 +1,29 @@
 class Question {
     constructor(question){
-        this.title = question.title 
+        this.text = question.text 
         this.options = question.options
+        this.renderQuestion()
     }
 
-    //     const quizContainer = document.getElementById('quiz-container')
-    //     const startButton = document.getElementById('start-button')
-    //     startButton.classList.add('hide')
-    //     let questionCard = document.createElement('div')
-    //     questionCard.classList.add('question-card')
-    //     this.questions.forEach(question => {
-    //         let questionText = document.createElement('p')
-    //         questionText.innerText = question.text
-    //         questionCard.appendChild(questionText)
-    //         this.loadOptions(question)
-    //     })
-    //     quizContainer.appendChild(questionCard)
+    renderQuestion()  {
+        const quizContainer = document.getElementById('quiz-container')
+        const startButton = document.getElementById('start-button')
+        startButton.classList.add('hide')
 
-    // }
+        let questionCard = document.createElement('div')
+        questionCard.classList.add('question-card')
+        console.log(this)
+        quizContainer.appendChild(questionCard)
+
+    }
+
+    loadOptions(question) {
+        const questionCard = document.querySelector('.question-card')
+        console.log(question.options)
+        question.options.forEach(option => {
+            const button = document.createElement('button')
+            button.innerText = option.text
+            questionCard.appendChild(button)
+        })
+    }
 }

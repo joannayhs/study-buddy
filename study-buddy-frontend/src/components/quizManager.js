@@ -1,6 +1,7 @@
 class QuizManager {
     constructor(quiz){
         this.quiz = quiz
+        this.id = quiz.id
         this.adapter = new QuestionAdapter()
         this.renderQuiz()
     }
@@ -21,20 +22,10 @@ class QuizManager {
 
     fetchAndloadQuestion() {
         return this.adapter.getQuestions()
-            .then(question => {
-                question.forEach(question => {
-                    new Question(question)
-                })
-            }).then(() => this.loadOptions())
+            .then(questions => {
+                let quizQuestions = questions.filter(question => question.quiz_id === this.id)
+                console.log(quizQuestions)
+                quizQuestions.forEach(question => new Question(question))
+            })
         }
-
-    loadOptions(question){
-        const questionCard = document.querySelector('.question-card')
-        console.log(question.options)
-        question.options.forEach(option => {
-            const button = document.createElement('button')
-            button.innerText = option.text
-            questionCard.appendChild(button)
-        })
-    }
 }
