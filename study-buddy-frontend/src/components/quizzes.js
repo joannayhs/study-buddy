@@ -28,15 +28,18 @@ class Quizzes {
         this.subjects.forEach(subject => {
         let listItem = document.createElement('p')
         listItem.innerHTML = subject
-        listItem.addEventListener('click', (e) => this.renderQuizSelection())
+        listItem.addEventListener('click', (e) => this.renderQuizSelection(e))
         subjectContainer.appendChild(listItem)
         })
     }
 
-    renderQuizSelection() {
+    renderQuizSelection(e) {
         let quizCards = document.querySelectorAll('.quiz-card')
         quizCards.forEach(card => card.parentElement.removeChild(card))
-        this.quizzes.forEach(quiz => this.createQuizCard(quiz))
+        this.quizzes.forEach(quiz => {
+            if(quiz.subject === e.target.innerText){
+                this.createQuizCard(quiz)}
+            })
     }
 
 
