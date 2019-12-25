@@ -28,7 +28,11 @@ class Quizzes {
         this.subjects.forEach(subject => {
         let listItem = document.createElement('p')
         listItem.innerHTML = subject
-        listItem.addEventListener('click', (e) => this.renderQuizSelection(e))
+        listItem.addEventListener('click', (e) => {
+        this.renderQuizSelection(e)
+        const quizContainer = document.getElementById('quiz-container')
+        quizContainer.classList.add('hide')
+        })
         subjectContainer.appendChild(listItem)
         })
     }
@@ -57,8 +61,8 @@ class Quizzes {
         quizCard.addEventListener('click', (e) => {
             new QuizManager(quiz)
             quizCard.parentElement.removeChild(quizCard)
-            const subjectContainer = document.getElementById('subject-container')
-            console.log(subjectContainer)
+            const quizSelectContainer = document.getElementById('quiz-select-container')
+            quizSelectContainer.classList.add('hide')
         })
     }
 
