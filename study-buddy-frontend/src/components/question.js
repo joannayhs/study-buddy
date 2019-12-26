@@ -1,8 +1,16 @@
 class Question {
-    constructor(question){
-        this.text = question.text 
-        this.options = question.options
-        this.renderQuestion()
+    constructor(quiz){
+        this.adapter = new QuestionAdapter()
+        this.questions =  []
+        this.quiz = quiz
+        this.fetchAndloadQuestion()
+    }
+    fetchAndloadQuestion() {
+        return this.adapter.getQuestions()
+            .then(questions => {
+                let quizQuestions = questions.filter(question => question.quiz_id === this.quiz.id)
+                quizQuestions.forEach(question => console.log(question))
+            })
     }
 
     renderQuestion()  {
@@ -12,18 +20,19 @@ class Question {
 
         let questionCard = document.createElement('div')
         questionCard.classList.add('question-card')
-        console.log(this)
+        questionCard.innerText = this.text
+        this.loadOptions()
         quizContainer.appendChild(questionCard)
 
     }
 
-    loadOptions(question) {
+    loadOptions() {
         const questionCard = document.querySelector('.question-card')
-        console.log(question.options)
-        question.options.forEach(option => {
-            const button = document.createElement('button')
-            button.innerText = option.text
-            questionCard.appendChild(button)
-        })
+        console.log(questionCard)
+        // this.options.forEach(option => {
+        //     const button = document.createElement('button')
+        //     button.innerText = option.text
+        //     questionCard.appendChild(button)
+        // })
     }
 }
