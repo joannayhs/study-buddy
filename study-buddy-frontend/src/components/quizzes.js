@@ -24,20 +24,28 @@ class Quizzes {
 
     renderSubject() {
         const subjectContainer = document.getElementById('subject-container')
+        
 
         this.subjects.forEach(subject => {
-        let listItem = document.createElement('p')
-        listItem.innerHTML = subject
-        listItem.addEventListener('click', (e) => {
-        this.renderQuizSelection(e)
-        const quizContainer = document.getElementById('quiz-container')
-        quizContainer.classList.add('hide')
+            let listItem = document.createElement('p')
+            listItem.innerHTML = subject
+            listItem.addEventListener('click', (e) => {
+                const quizSelectContainer = document.querySelectorAll('.quiz-select-container')
+                quizSelectContainer.forEach(container =>  container.parentElement.removeChild(container))
+                const quizContainer = document.querySelectorAll('.quiz-container')
+                quizContainer.forEach(quiz => quiz.parentElement.removeChild(quiz))
+                this.renderQuizSelection(e)
         })
         subjectContainer.appendChild(listItem)
         })
     }
 
     renderQuizSelection(e) {
+        const mainContainer = document.getElementById('main-container')
+        let quizSelectContainer = document.createElement('div')
+        quizSelectContainer.classList.add('quiz-select-container')
+        mainContainer.appendChild(quizSelectContainer)
+
         let quizCards = document.querySelectorAll('.quiz-card')
         quizCards.forEach(card => card.parentElement.removeChild(card))
         this.quizzes.forEach(quiz => {
@@ -48,22 +56,18 @@ class Quizzes {
 
 
     createQuizCard(quiz) {
-        const quizSelectContainer = document.getElementById('quiz-select-container')
-        quizSelectContainer.classList.remove('hide')
-
+        const quizSelectContainer = document.querySelector('.quiz-select-container')        
+        
         let quizCard = document.createElement('div')
         quizCard.classList.add('quiz-card')
 
         let text = document.createElement('p')
         text.innerText = quiz.title
+
         quizCard.appendChild(text)
         quizSelectContainer.appendChild(quizCard)
-        quizCard.addEventListener('click', (e) => {
-            new QuizManager(quiz)
-            quizCard.parentElement.removeChild(quizCard)
-            const quizSelectContainer = document.getElementById('quiz-select-container')
-            quizSelectContainer.classList.add('hide')
-        })
+
+        quizCard.addEventListener('click', (e) => new QuizManager(quiz))
     }
 
 }

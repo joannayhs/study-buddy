@@ -18,7 +18,7 @@ class Question {
     }
 
     renderQuestion()  {
-        const quizContainer = document.getElementById('quiz-container')
+        const quizContainer = document.querySelector('.quiz-container')
         const startButton = document.getElementById('start-button')
         startButton.classList.add('hide')
 
