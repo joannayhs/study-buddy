@@ -25,6 +25,7 @@ class QuizManager {
         startButton.innerText = "start quiz"
 
         startButton.addEventListener('click', (e) => {
+            startButton.parentElement.removeChild(startButton)
             new Question(this.quiz)
         })
 
