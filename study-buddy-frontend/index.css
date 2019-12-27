@@ -3,13 +3,16 @@
 }
 
 #subject-container{
-    border: 2px black solid;
-    width: 15%;
     float: left;
+    text-align: right;
+    width: auto;
+    border: 2px black solid;
 }
 
 #main-container {
     border: 2px black solid;
-    float: right;
+    float: left;
+    width: auto;
+    margin: auto 0;
 
 }

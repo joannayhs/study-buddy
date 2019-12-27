@@ -4,12 +4,16 @@ class Question {
         this.questions =  []
         this.quiz = quiz
         this.fetchAndloadQuestion()
+        
     }
     fetchAndloadQuestion() {
         return this.adapter.getQuestions()
             .then(questions => {
                 let quizQuestions = questions.filter(question => question.quiz_id === this.quiz.id)
-                quizQuestions.forEach(question => console.log(question))
+                quizQuestions.forEach(question => {
+                    this.questions.push(question)
+                    
+                })
             })
     }
 
@@ -20,7 +24,7 @@ class Question {
 
         let questionCard = document.createElement('div')
         questionCard.classList.add('question-card')
-        questionCard.innerText = this.text
+        questionCard.innerText = question.text
         this.loadOptions()
         quizContainer.appendChild(questionCard)
 
