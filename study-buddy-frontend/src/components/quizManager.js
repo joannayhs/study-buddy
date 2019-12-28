@@ -18,6 +18,7 @@ class QuizManager {
         mainContainer.appendChild(quizContainer)
 
         let quizTitle = document.createElement('h1')
+        quizTitle.classList.add('title')
         quizTitle.innerText = this.quiz.title
 
         let startButton =  document.createElement('button')

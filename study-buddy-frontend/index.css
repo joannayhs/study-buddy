@@ -16,3 +16,11 @@
     margin: auto 0;
 
 }
+
+.correct {
+    background-color: green;
+}
+
+.incorrect {
+    background-color: red;
+}
