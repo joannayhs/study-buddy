@@ -1,7 +1,7 @@
 class Quizzes {
     constructor(){
         this.quizzes = []
-        this.adapter = new QuizzesAdapter()
+        this.adapter = new QuizAdapter()
         this.subjects = []
         this.fetchAndLoadQuizzes()
     }

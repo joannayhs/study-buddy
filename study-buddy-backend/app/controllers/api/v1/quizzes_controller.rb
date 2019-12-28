@@ -29,6 +29,6 @@ class Api::V1::QuizzesController < ApplicationController
     private 
 
     def quiz_params 
-        params.require(:quiz).permit(:title, :subject, :questions[:options[]])
+        params.require(:quiz).permit(:title, :subject, :completed, :questions[:options[]])
     end 
 end
