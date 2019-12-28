@@ -23,14 +23,26 @@ class Question {
         this.loadOptions(questionArray[this.currentQuestionIndex])
 
     }
-
+    
     loadOptions(question) {
         const questionCard = document.querySelector('.question-card')
+        let options = []
         question.options.forEach(option => {
+            options.push(option)
             let optionButton = document.createElement('button')
             optionButton.classList.add('option-button')
             optionButton.innerText = option.text 
             questionCard.appendChild(optionButton)
+            optionButton.addEventListener('click', (e) => {
+                this.currentQuestionIndex++ 
+                this.checkAnswer(e, options)
+            })
         })
+    }
+
+    checkAnswer(e, options){
+        console.log(options.find(option => option.text === e.target.innerText))
+        
+
     }
 }
