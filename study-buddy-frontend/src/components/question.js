@@ -84,7 +84,10 @@ class Question {
                 let completeQuizButton = document.createElement('button')
                 completeQuizButton.innerText = "Complete Quiz"
                 questionCard.appendChild(completeQuizButton)
-                completeQuizButton.addEventListener('click', (e) => this.renderQuizResults())
+                completeQuizButton.addEventListener('click', (e) => {
+                    this.renderQuizResults()
+                    new QuizAdapter().updateQuiz(this.quiz, true)
+                })
             }
         }
 
@@ -98,8 +101,13 @@ class Question {
             quizCard.parentElement.removeChild(quizCard)
             quizContainer.appendChild(results)
 
-            new QuizAdapter().updateQuiz(this.quiz, true)
-
+            const nextQuiz = document.createElement('button')
+            nextQuiz.innerText = "Take Another Quiz"
+            results.appendChild(nextQuiz)
+            nextQuiz.addEventListener('click', (e) => {
+                const mainContainer = document.getElementById('main-container')
+                mainContainer.removeChild(quizContainer)
+            })
         }
         
 }

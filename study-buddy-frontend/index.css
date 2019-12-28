@@ -37,3 +37,7 @@
     border: 1px black solid;
     margin: 5px;
 }
+
+.completed {
+    background-color: blue;
+}

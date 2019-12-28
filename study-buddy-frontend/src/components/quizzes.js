@@ -20,7 +20,7 @@ class Quizzes {
 
     render() {
         this.renderSubject()
-        this.forEach(quiz => {
+        this.quizzes.forEach(quiz => {
             if(quiz.completed){
                 new QuizAdapter().updateQuiz(quiz, false)
             }
@@ -37,41 +37,29 @@ class Quizzes {
             listItem.addEventListener('click', (e) => {
                 let selection = e
                 const quizSelectContainer = document.querySelectorAll('.quiz-select-container')
-                quizSelectContainer.forEach(container =>  container.parentElement.removeChild(container))
+                quizSelectContainer.forEach(container =>  this.removeElement(container))
                 
                 const quizContainer = document.querySelectorAll('.quiz-container')
                 const quizCard = document.querySelector('.quiz-card')
-                
                 if(quizContainer.length != 0){
-
-                    let alert = document.createElement('div')
-                    const body = document.querySelector('body')
-                    body.appendChild(alert)
-                    alert.classList.add('alert')
-                    alert.innerHTML = '<p>Clicking a new subject will erase all quiz progress. Are you sure you want to do that?</p>'
-                    let yesButton = document.createElement('button')
-                    yesButton.innerText = "yes"
-                    let noButton = document.createElement('button')
-                    noButton.innerText = "no"
-                    alert.appendChild(yesButton)
-                    alert.appendChild(noButton)
-
+                    this.renderAlert()
+                    const alert = document.querySelector('.alert')
                     alert.addEventListener('click', (e) => {
                         if(e.target.innerText === 'yes'){
-                            quizContainer.forEach(quiz => quiz.parentElement.removeChild(quiz))
+                            quizContainer.forEach(quiz => this.removeElement(quiz))
                             if (quizCard) {
-                                quizCard.parentElement.removeChild(quizCard)
+                                this.removeElement(quizCard)
                              }
-                            alert.parentElement.removeChild(alert)
+                            this.removeElement(alert)
                             this.renderQuizSelection(selection)
                         }else{
                             alert.parentElement.removeChild(alert)
                         }
                     })
                 }else{
-                    quizContainer.forEach(quiz => quiz.parentElement.removeChild(quiz))
+                    quizContainer.forEach(quiz => this.removeElement(quiz))
                     if (quizCard) {
-                        quizCard.parentElement.removeChild(quizCard)
+                        this.removeElement(quizCard)
                     }
                     this.renderQuizSelection(selection)
                 }
@@ -81,6 +69,20 @@ class Quizzes {
         subjectContainer.appendChild(listItem)
         })
     }
+    
+    renderAlert(){
+        let alert = document.createElement('div')
+        const body = document.querySelector('body')
+        body.appendChild(alert)
+        alert.classList.add('alert')
+        alert.innerHTML = '<p>Clicking a new subject will erase all quiz progress. Are you sure you want to do that?</p>'
+        let yesButton = document.createElement('button')
+        yesButton.innerText = "yes"
+        let noButton = document.createElement('button')
+        noButton.innerText = "no"
+        alert.appendChild(yesButton)
+        alert.appendChild(noButton)
+    }
 
     renderQuizSelection(e) {
         const mainContainer = document.getElementById('main-container')
@@ -89,7 +91,7 @@ class Quizzes {
         mainContainer.appendChild(quizSelectContainer)
 
         let quizCards = document.querySelectorAll('.quiz-card')
-        quizCards.forEach(card => card.parentElement.removeChild(card))
+        quizCards.forEach(card => this.removeElement(card))
         this.quizzes.forEach(quiz => {
             if(quiz.subject === e.target.innerText){
                 this.createQuizCard(quiz)}
@@ -106,9 +108,14 @@ class Quizzes {
         text.innerText = quiz.title
 
         quizCard.appendChild(text)
+
         quizSelectContainer.appendChild(quizCard)
 
         quizCard.addEventListener('click', (e) => new QuizManager(quiz))
+    }
+
+    removeElement(element){
+        element.parentElement.removeChild(element)
     }
 
 }
