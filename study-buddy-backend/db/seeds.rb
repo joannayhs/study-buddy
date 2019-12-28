@@ -66,3 +66,14 @@ question_two.options.build(text: "Yonkers", correct: false)
 question_two.save
 question_two.options.build(text: "Rochester", correct: false)
 question_two.save
+
+question_three = quiz_three.questions.build(text: "What is the capital of Pennsylvania?")
+quiz_three.save
+question_three.options.build(text: "Philadelphia", correct: false)
+question_three.save
+question_three.options.build(text: "Pittsburgh", correct: false)
+question_three.save
+question_three.options.build(text: "Harrisburg", correct: true)
+question_three.save
+question_three.options.build(text: "West Chester", correct: false)
+question_three.save

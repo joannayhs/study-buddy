@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 2019_12_15_203526) do
   create_table "quizzes", force: :cascade do |t|
     t.string "title"
     t.string "subject"
+    t.boolean "completed", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
