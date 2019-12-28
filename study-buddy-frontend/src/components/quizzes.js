@@ -15,16 +15,22 @@ class Quizzes {
                     this.subjects.push(quiz.subject)
                 }
             })
-        }).then(() => this.render())
+        }).then(() => {
+            this.render()
+            this.resetQuizStatus()
+        })
+    }
+
+    resetQuizStatus() {
+        this.quizzes.forEach(quiz => {
+            if (quiz.completed) {
+                this.adapter.updateQuiz(quiz, false)
+            }
+        })
     }
 
     render() {
         this.renderSubject()
-        this.quizzes.forEach(quiz => {
-            if(quiz.completed){
-                new QuizAdapter().updateQuiz(quiz, false)
-            }
-        })
     }
 
     renderSubject() {
@@ -39,28 +45,25 @@ class Quizzes {
                 const quizSelectContainer = document.querySelectorAll('.quiz-select-container')
                 quizSelectContainer.forEach(container =>  this.removeElement(container))
                 
-                const quizContainer = document.querySelectorAll('.quiz-container')
+                const quizContainer = document.querySelector('.quiz-container')
                 const quizCard = document.querySelector('.quiz-card')
-                if(quizContainer.length != 0){
+
+                if(quizContainer){
                     this.renderAlert()
                     const alert = document.querySelector('.alert')
                     alert.addEventListener('click', (e) => {
                         if(e.target.innerText === 'yes'){
-                            quizContainer.forEach(quiz => this.removeElement(quiz))
+                            this.removeElement(quizContainer)
                             if (quizCard) {
                                 this.removeElement(quizCard)
                              }
                             this.removeElement(alert)
                             this.renderQuizSelection(selection)
                         }else{
-                            alert.parentElement.removeChild(alert)
+                            this.removeElement(alert)
                         }
                     })
                 }else{
-                    quizContainer.forEach(quiz => this.removeElement(quiz))
-                    if (quizCard) {
-                        this.removeElement(quizCard)
-                    }
                     this.renderQuizSelection(selection)
                 }
 
@@ -103,12 +106,15 @@ class Quizzes {
         
         let quizCard = document.createElement('div')
         quizCard.classList.add('quiz-card')
+        
+        if (quiz.completed) {
+            quizCard.classList.add('completed')
+        }
 
         let text = document.createElement('p')
         text.innerText = quiz.title
 
         quizCard.appendChild(text)
-
         quizSelectContainer.appendChild(quizCard)
 
         quizCard.addEventListener('click', (e) => new QuizManager(quiz))

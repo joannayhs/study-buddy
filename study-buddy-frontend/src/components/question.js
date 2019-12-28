@@ -1,18 +1,10 @@
 class Question {
     constructor(quiz){
-        this.adapter = new QuestionAdapter()
         this.quiz = quiz
-        this.quizQuestions = undefined
-        this.fetchAndloadQuestions()
+        this.questions = quiz.questions
         this.currentQuestionIndex = 0
         this.responses = []
-    }
-    fetchAndloadQuestions() {
-        return this.adapter.getQuestions()
-            .then(questions => {
-                this.quizQuestions = questions.filter(question => question.quiz_id === this.quiz.id)
-                this.renderQuestion(this.quizQuestions)
-            })
+        this.renderQuestion(this.questions)
     }
 
     renderQuestion(questionArray)  {
@@ -39,9 +31,8 @@ class Question {
 
     loadOptions(question) {
         const questionCard = document.querySelector('.question-card')
-        let options = []
-        question.options.forEach(option => {
-            options.push(option)
+        let options = this.quiz.options.filter(option => question.id === option.question_id)
+        options.forEach(option => {
             let optionButton = document.createElement('button')
             optionButton.classList.add('option-button')
             optionButton.innerText = option.text 
@@ -49,7 +40,7 @@ class Question {
             optionButton.addEventListener('click', (e) => {
                 this.currentQuestionIndex++
                 let optionButtons = document.querySelectorAll('.option-button')
-                optionButtons.forEach(button => button.parentElement.removeChild(button)) 
+                optionButtons.forEach(button => this.removeElement(button)) 
                 this.checkAnswer(e, options)
             })
         })
@@ -73,32 +64,33 @@ class Question {
 
         checkIfComplete(){
             let questionCard = document.querySelector('.question-card')
-            if (this.quizQuestions.length > this.currentQuestionIndex) {
+            if (this.questions.length > this.currentQuestionIndex) {
                 let nextButton = document.createElement('button')
                 nextButton.innerText = "Next Question"
                 questionCard.appendChild(nextButton)
                 nextButton.addEventListener('click', (e) => {
-                    this.nextQuestion(this.quizQuestions[this.currentQuestionIndex])
+                    this.nextQuestion(this.questions[this.currentQuestionIndex])
                 })
             } else {
                 let completeQuizButton = document.createElement('button')
                 completeQuizButton.innerText = "Complete Quiz"
                 questionCard.appendChild(completeQuizButton)
                 completeQuizButton.addEventListener('click', (e) => {
-                    this.renderQuizResults()
+                    this.quiz.completed = true
                     new QuizAdapter().updateQuiz(this.quiz, true)
+                    this.renderQuizResults()
                 })
             }
         }
 
         renderQuizResults(){
-            const quizCard = document.querySelector('.question-card')
+            const questionCard = document.querySelector('.question-card')
             const quizContainer = document.querySelector('.quiz-container')
 
             let results = document.createElement('div')
             results.classList.add('results')
             results.innerText = `You got ${this.responses.filter(response => response === true).length}/${this.responses.length} correct.`
-            quizCard.parentElement.removeChild(quizCard)
+            this.removeElement(questionCard)            
             quizContainer.appendChild(results)
 
             const nextQuiz = document.createElement('button')
@@ -108,6 +100,10 @@ class Question {
                 const mainContainer = document.getElementById('main-container')
                 mainContainer.removeChild(quizContainer)
             })
+        }
+
+        removeElement(element){
+            element.parentElement.removeChild(element)
         }
         
 }

@@ -9,7 +9,7 @@ class QuizManager {
         const quizSelectContainer = document.querySelector('.quiz-select-container')
 
         if (quizSelectContainer) {
-            quizSelectContainer.parentElement.removeChild(quizSelectContainer)
+            this.removeElement(quizSelectContainer)
         }
 
         const mainContainer = document.getElementById('main-container')
@@ -26,12 +26,16 @@ class QuizManager {
         startButton.innerText = "start quiz"
 
         startButton.addEventListener('click', (e) => {
-            startButton.parentElement.removeChild(startButton)
+            this.removeElement(startButton)
             new Question(this.quiz)
         })
 
         quizContainer.appendChild(quizTitle)
         quizContainer.appendChild(startButton)  
+    }
+
+    removeElement(element){
+        element.parentElement.removeChild(element)
     }
 
 }
