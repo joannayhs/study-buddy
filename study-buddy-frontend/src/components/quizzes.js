@@ -20,6 +20,11 @@ class Quizzes {
 
     render() {
         this.renderSubject()
+        this.forEach(quiz => {
+            if(quiz.completed){
+                new QuizAdapter().updateQuiz(quiz, false)
+            }
+        })
     }
 
     renderSubject() {

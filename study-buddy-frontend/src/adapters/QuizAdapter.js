@@ -7,15 +7,15 @@ class QuizAdapter {
         return fetch(this.baseUrl).then(res => res.json())
     }
 
-    updateQuiz() {
-        return fetch(this.baseUrl, {
+    updateQuiz(quiz, value) {
+        return fetch(`${this.baseUrl}/${quiz.id}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
                 "Accept": "application/json"
             },
             body: JSON.stringify({
-
+                completed: value
             })
         })
             .then(res => res.json())

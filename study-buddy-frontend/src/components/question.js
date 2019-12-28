@@ -98,7 +98,7 @@ class Question {
             quizCard.parentElement.removeChild(quizCard)
             quizContainer.appendChild(results)
 
-            new QuizAdapter(this.quiz).patchQuiz()
+            new QuizAdapter().updateQuiz(this.quiz, true)
 
         }
         
