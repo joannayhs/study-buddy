@@ -24,3 +24,16 @@
 .incorrect {
     background-color: red;
 }
+
+.alert {
+    float: center;
+    margin: auto;
+    border: 1px black solid;
+    width: 10%;
+    height: 10%;
+}
+
+.quiz-card{
+    border: 1px black solid;
+    margin: 5px;
+}
