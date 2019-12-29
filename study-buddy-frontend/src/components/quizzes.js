@@ -34,11 +34,16 @@ class Quizzes {
 
     renderSubject() {
         const subjectContainer = document.getElementById('subject-container')
+        const directions  = document.createElement('p')
+        directions.classList.add('directions')
+        directions.innerText = "Click on a subject to see the available quizzes."
+        subjectContainer.appendChild(directions)
         
 
         this.subjects.forEach(subject => {
             let listItem = document.createElement('p')
             listItem.innerHTML = subject
+            listItem.classList.add('subject')
             listItem.addEventListener('click', (e) => {
                 let selection = e
                 const quizSelectContainer = document.querySelectorAll('.quiz-select-container')
