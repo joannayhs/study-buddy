@@ -7,7 +7,7 @@ class Quizzes {
     }
 
     fetchAndLoadQuizzes() {
-        return this.adapter.getQuizzes()
+         this.adapter.getQuizzes()
         .then(quiz => {
             quiz.forEach(quiz => {
                 this.quizzes.push(quiz)
@@ -15,18 +15,17 @@ class Quizzes {
                     this.subjects.push(quiz.subject)
                 }
             })
-        }).then(() => {
-            this.resetQuizStatus()
-            this.render()
-        })
+        }).then(() => this.resetQuizStatus())
     }
 
     resetQuizStatus() {
         this.quizzes.forEach(quiz => {
             if (quiz.completed) {
                 this.adapter.updateQuiz(quiz, false)
+                quiz.completed = false
             }
         })
+        this.render()
     }
 
     render() {
