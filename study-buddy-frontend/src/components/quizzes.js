@@ -46,9 +46,10 @@ class Quizzes {
                 quizSelectContainer.forEach(container =>  this.removeElement(container))
                 
                 const quizContainer = document.querySelector('.quiz-container')
+                const questionCard = document.querySelector('.question-card')
                 const quizCard = document.querySelector('.quiz-card')
 
-                if(quizContainer){
+                if(questionCard){
                     this.renderAlert()
                     const alert = document.querySelector('.alert')
                     alert.addEventListener('click', (e) => {
@@ -64,6 +65,7 @@ class Quizzes {
                         }
                     })
                 }else{
+                    if(quizContainer){this.removeElement(quizContainer)}
                     this.renderQuizSelection(selection)
                 }
 
@@ -106,7 +108,7 @@ class Quizzes {
         
         let quizCard = document.createElement('div')
         quizCard.classList.add('quiz-card')
-        
+
         if (quiz.completed) {
             quizCard.classList.add('completed')
         }

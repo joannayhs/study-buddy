@@ -23,7 +23,7 @@ class QuizManager {
 
         let startButton =  document.createElement('button')
         startButton.id = "start-button"
-        startButton.innerText = "start quiz"
+        startButton.innerText = "START QUIZ"
 
         startButton.addEventListener('click', (e) => {
             this.removeElement(startButton)
