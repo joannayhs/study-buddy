@@ -64,6 +64,14 @@ body{
   border-radius: 5px;
 }
 
+.next-button, .complete-quiz, .next-quiz{
+  background-color: white;
+  padding: 15px;
+  text-align: center;
+  display: inline-block;
+  border-radius: 5px;
+}
+
 #start-button:hover{
     color: white;
 }
@@ -78,6 +86,7 @@ body{
   text-align: center;
   display: inline-block;
   border-radius: 5px;
+  border: 1px black solid;
 }
 
 .option-button:disabled{
@@ -85,11 +94,11 @@ body{
 }
 
 .correct {
-    background-color: green;
+    background-color: #4DD15B;
 }
 
 .incorrect {
-    background-color: red;
+    background-color: #FF4135;
 }
 
 .alert {
@@ -112,5 +121,7 @@ body{
 
 
 .completed {
-    background-color: blue;
+    background-color: #BDF5F2;
+    color: grey;
+    z-index: 1;
 }

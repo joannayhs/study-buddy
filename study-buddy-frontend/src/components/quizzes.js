@@ -16,8 +16,8 @@ class Quizzes {
                 }
             })
         }).then(() => {
-            this.render()
             this.resetQuizStatus()
+            this.render()
         })
     }
 
