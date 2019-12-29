@@ -39,26 +39,44 @@ body{
     background-color: white;
 }
 
+.quiz-card p{
+    margin-top: 40%;
+}
+
+.quiz-card:hover{
+    background-color: #EAECEB;
+}
+
 .quiz-container{
     background-color: white;
     border: 1px black solid;
     border-radius: 5px;
     width: auto;
     padding: 10px;
-}
-
-.quiz-container h1{
     text-align: center;
 }
 
 #start-button{
-  background-color: #80BB2D;
-  border: none;
-  color: white;
+  background-color: #4DD15B;
   padding: 15px;
   text-align: center;
   display: inline-block;
-  margin-left: auto;
+  border-radius: 5px;
+}
+
+#start-button:hover{
+    color: white;
+}
+
+.question-container{
+    text-align: center;
+}
+
+.option-button{
+  padding: 15px;
+  margin: 5px;
+  text-align: center;
+  display: inline-block;
   border-radius: 5px;
 }
 
