@@ -20,11 +20,13 @@ class Question {
     nextQuestion(question){
         let questionCard = document.querySelector('.question-card')
 
-        questionCard.innerText = ""
+        let text = document.createElement('p')
+        questionCard.appendChild(text)
+        text.innerText = ""
         questionCard.classList.remove('correct')
         questionCard.classList.remove('incorrect')
 
-        questionCard.innerText = question.text
+        text.innerText = question.text
         this.loadOptions(question)
 
     }
