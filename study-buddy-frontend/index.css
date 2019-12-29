@@ -80,8 +80,8 @@ body{
   border-radius: 5px;
 }
 
-.option-button:hover{
-    background-color: #EAECEB;
+.option-button:disabled{
+    color: black;
 }
 
 .correct {

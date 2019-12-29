@@ -41,24 +41,33 @@ class Question {
             questionCard.appendChild(optionButton)
             optionButton.addEventListener('click', (e) => {
                 this.currentQuestionIndex++
-                let optionButtons = document.querySelectorAll('.option-button')
-                optionButtons.forEach(button => this.removeElement(button)) 
                 this.checkAnswer(e, options)
             })
         })
     }
 
     checkAnswer(e, options){
-        let questionCard = document.querySelector('.question-card')
+        const optionButtons = document.querySelectorAll('.option-button')
+        const questionCard = document.querySelector('.question-card')
         let selectedAnswer = options.find(option => option.text === e.target.innerText)
         let correctAnswer = options.find(option => option.correct === true)
+        console.log(optionButtons)
+        let buttonArray = Array.from(optionButtons)
+        let correctButton = buttonArray.find(button => button.innerHTML === correctAnswer.text)
+        let incorrectButton = buttonArray.find(button => button.innerHTML === selectedAnswer.text)
+    
 
         if(selectedAnswer === correctAnswer){
+            correctButton.classList.add('correct')
             questionCard.classList.add('correct')
+            buttonArray.forEach(button => button.disabled = true)
             this.responses.push(selectedAnswer.correct)
             this.checkIfComplete()
         }else{
+            correctButton.classList.add('correct')
             questionCard.classList.add('incorrect')
+            incorrectButton.classList.add('incorrect')
+            buttonArray.forEach(button => button.disabled = true)
             this.responses.push(selectedAnswer.correct)
             this.checkIfComplete()
         }
