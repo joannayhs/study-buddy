@@ -104,7 +104,9 @@ class Question {
 
             let results = document.createElement('div')
             results.classList.add('results')
-            results.innerHTML = `You got ${this.responses.filter(response => response === true).length}/${this.responses.length} correct.<br>`
+            let correctAnswers = this.responses.filter(response => (response === true)).length
+            let totalQuestions = this.responses.length
+            results.innerHTML = `You got ${correctAnswers}/${totalQuestions} correct.<br>`
             this.removeElement(questionCard)            
             quizContainer.appendChild(results)
 
