@@ -1,18 +1,7 @@
-# README
+# Study Buddy
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Description
+This SPA Javascript frontend and Rails backend project is a quiz app for students in 4th grade to practice concepts that they would learn in school. 
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* Services (job queues, cache servers, search engines, etc.)
+## Credit
+Most of the quizzes feature questions found on http://www.proprofs.com. 
