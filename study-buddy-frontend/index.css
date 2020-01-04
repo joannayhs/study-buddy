@@ -39,10 +39,11 @@ body{
     border: 2px black solid;
     border-radius: 5px;
     background-color: #FCF3D3;
+    z-index: -1;
 }
 
 .quiz-card{
-    display: inline-block;
+    display: block;
     border: 1px black solid;
     border-radius: 5px;
     width: 150px;
@@ -115,8 +116,7 @@ body{
 }
 
 .alert {
-    position: fixed;
-    z-index: 1;
+    position: fixed center;
     margin: auto;
     border: 2px black solid;
     border-radius: 10px;
@@ -124,6 +124,7 @@ body{
     width: 200px;
     text-align: center;
     padding: 5px;
+    z-index: 5;
 }
 
 .alert button {

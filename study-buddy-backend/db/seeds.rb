@@ -293,7 +293,7 @@ qsixqone.save
 qsixqone.options.build(text: "Hurricane", correct: false)
 qsixqone.save
 
-qsixqtwo = quizsix.questions.build(text: "On a weather map, an 'H' standsf for: ")
+qsixqtwo = quizsix.questions.build(text: "On a weather map, an 'H' stands for: ")
 quizsix.save
 qsixqtwo.options.build(text: "Hot air", correct: false)
 qsixqtwo.save
@@ -315,7 +315,7 @@ qsixqthree.save
 qsixqthree.options.build(text: "Sleet", correct: false)
 qsixqthree.save
 
-qsixqfour = quizsix.questions.build(text: "The famouse hurricane that hit New Orleans in 2005 was called: ")
+qsixqfour = quizsix.questions.build(text: "The famous hurricane that hit New Orleans in 2005 was called: ")
 quizsix.save
 qsixqfour.options.build(text: "Bill", correct: false)
 qsixqfour.save
