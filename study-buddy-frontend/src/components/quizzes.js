@@ -25,12 +25,10 @@ class Quizzes {
                 quiz.completed = false
             }
         })
-        this.render()
-    }
-
-    render() {
         this.renderSubject()
     }
+
+ 
 
     renderSubject() {
         const subjectContainer = document.getElementById('subject-container')
@@ -103,13 +101,14 @@ class Quizzes {
         quizCards.forEach(card => this.removeElement(card))
         this.quizzes.forEach(quiz => {
             if(quiz.subject === e.target.innerText){
-                this.createQuizCard(quiz)}
+                let quizCard = this.createQuizCard(quiz)
+                quizSelectContainer.appendChild(quizCard)
+                quizCard.addEventListener('click', (e) => new QuizManager(quiz))
+            }
             })
     }
 
     createQuizCard(quiz) {
-        const quizSelectContainer = document.querySelector('.quiz-select-container')        
-        
         let quizCard = document.createElement('div')
         quizCard.classList.add('quiz-card')
 
@@ -121,13 +120,56 @@ class Quizzes {
         text.innerText = quiz.title
 
         quizCard.appendChild(text)
-        quizSelectContainer.appendChild(quizCard)
+        return quizCard
 
-        quizCard.addEventListener('click', (e) => new QuizManager(quiz))
+       
     }
 
     removeElement(element){
         element.parentElement.removeChild(element)
     }
 
+}
+
+
+class Subject {
+    constructor(name){
+        this.name = name
+    }
+
+    render(){
+        let listItem = document.createElement('p')
+        listItem.innerHTML = subject
+        listItem.classList.add('subject')
+        listItem.addEventListener('click', (e) => {
+            let selection = e
+            const quizSelectContainer = document.querySelectorAll('.quiz-select-container')
+            quizSelectContainer.forEach(container => this.removeElement(container))
+
+            const quizContainer = document.querySelector('.quiz-container')
+            const questionCard = document.querySelector('.question-card')
+            const quizCard = document.querySelector('.quiz-card')
+
+            if (questionCard) {
+                this.renderAlert()
+                const alert = document.querySelector('.alert')
+                alert.addEventListener('click', (e) => {
+                    if (e.target.innerText === 'yes') {
+                        this.removeElement(quizContainer)
+                        if (quizCard) {
+                            this.removeElement(quizCard)
+                        }
+                        this.removeElement(alert)
+                        this.renderQuizSelection(selection)
+                    } else {
+                        this.removeElement(alert)
+                    }
+                })
+            } else {
+                if (quizContainer) { this.removeElement(quizContainer) }
+                this.renderQuizSelection(selection)
+            }
+
+        })
+    }
 }
